@@ -12,11 +12,11 @@ namespace DataProtectionApi.Controllers
 
         public ProtectionController(IDataProtectionProvider provider)
         {
-            _protector = provider.CreateProtector("DataProtectionApi.v1");
+            _protector = provider.CreateProtector("DataProtectionApi.Protection");
         }
 
         [HttpPost("protect")]
-        public IActionResult Protect([FromBody] string value)
+        public IActionResult Protect([FromQuery] string value)
         {
             try
             {   if (string.IsNullOrEmpty(value))
@@ -41,7 +41,7 @@ namespace DataProtectionApi.Controllers
         }
 
         [HttpPost("unprotect")]
-        public IActionResult Unprotect([FromBody] string protectedValue)
+        public IActionResult Unprotect([FromQuery] string protectedValue)
         {
             try
             {
